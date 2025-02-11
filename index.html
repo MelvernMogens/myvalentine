@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Valentine's Surprise</title>
+    <style>
+body {
+    font-family: 'Poppins', sans-serif; /* Use Poppins for body text */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://media.istockphoto.com/id/1191251531/vector/seamless-pattern-with-red-hearts-romantic-creamy-peach-background-for-textile-wallpaper.jpg?s=612x612&w=0&k=20&c=RqOsWkdXpYGaLs6uJ8-7Z0MjfXlIY73--E_oTjW1ZcE='); /* Set the background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image */
+}
+      .envelope-container {
+        display: flex; /* Use flexbox to center the envelope */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Full height of the viewport */
+        position: relative; /* Position relative for absolute children */
+      }
+
+      .envelope {
+        position: relative; /* Change to relative for proper positioning */
+        width: 200px;
+        height: 150px;
+        cursor: pointer;
+        background: #eb6196; /* Add background color to the envelope */
+        border-radius: 10px; /* Optional: Add rounded corners */
+      }
+      .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: #fdd6e5;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transform-origin: top;
+        transition: transform 0.5s;
+      }
+      .heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        transform: translate(-50%, -50%); /* Center the image */
+        transition: opacity 0.5s;
+      }
+      .open .flap {
+        transform: rotateX(180deg);
+      }
+      .open .heart {
+        opacity: 0;
+      }
+
+      .content {
+        display: none;
+        padding: 20px; /* Add some padding for content */
+      }
+      .header {
+        background: #fdd6e5;
+        padding: 20px;
+        border-radius: 10px; /* Add rounded corners to the header */
+      }
+      .header h1 {
+        color: #d45d79;
+        font-family: "Pacifico", cursive;
+      }
+      .content p {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 15px; /* Add some padding for better spacing */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 10px; /* Add margin for spacing */
+}
+.product {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 15px; /* Add some padding */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 20px; /* Add margin for spacing */
+    display: inline-block; /* Ensure products are displayed inline */
+}
+      .product img {
+        width: 80%; /* Make the image take the full width of its container */
+        max-width: 300px; /* Set a maximum width for larger screens */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 10px; /* Space between image and text */
+        border-radius: 15px; /* Add rounded corners to the product image */
+      }
+      .button {
+        background: #d45d79;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px;
+        border-radius: 10px; /* Add rounded corners to the button */
+      }
+      .cart {
+        margin: 20px;
+        padding: 15px;
+        border: 2px solid #d45d79;
+        border-radius: 10px;
+        background-color: #fff5f8;
+        display: none;
+      }
+
+      .footer {
+        margin-top: 20px;
+        padding: 20px;
+        background: #fdd6e5;
+        border-radius: 10px; /* Add rounded corners to the footer */
+      }
+      @keyframes fly {
+        0% {
+          transform: translate(-50%, -50%) translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) translateY(-300px); /* Adjust the distance as needed */
+          opacity: 0; /* Fade out */
+        }
+      }
+
+      .flying {
+        animation: fly 1s forwards; /* Animation duration and forwards to keep the final state */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="envelope-container" onclick="openEnvelope()">
+      <div class="envelope">
+        <div class="flap"></div>
+        <img
+          class="heart"
+          src="https://static.vecteezy.com/system/resources/previews/009/400/889/non_2x/red-heart-set-clipart-design-illustration-free-png.png"
+          alt="Heart"
+          onclick="flyHeart()"
+        />
+      </div>
+    </div>
+
+    <div class="content" id="content">
+      <div class="header">
+        <h1>Hanya Cinta dan Malam</h1>
+      </div>
+      <div>
+        <p>Haloo, happy valentine’s day byy 💖<br>
+            Walaupun kita belum officially jadi pasangan, aku tetap mau kasih kamu kado valentine via online. Karena menurut aku, Valentine’s Day itu hari yang spesial buat ngasih sesuatu ke orang yang aku sayang. Dan orang itu kamu hehehe. Aku pengen di hari ini, kamu ngerasa dihargai, disayang, dan tau kalau aku selalu ada buat kamu. Walaupun mungkin ini cuma hadiah kecil, aku harap ini bisa bikin kamu seneng yaa 🎁<br><br>
+            
+            Jadi, di bawah ini ada pilihan skin mole antara Carmilla atau Cecil. Kamu pilih yaa. Nanti bakal ada tombol lagi di bawah buat langsung ke mole. Tinggal buka aja nanti. Aku pengen kamu bisa pakai skin ini dan inget kalau ini dari aku, biar setiap kali kamu main game, ada sedikit bagian dari aku yang nemenin kamu 💖<br><br>
+            
+            Nah, sekarang masuk ke pesannya. Aku bener-bener berharap kita bisa semakin langgeng dan terus lanjut ke depannya. Aku seneng banget bisa kenal kamu, bisa deket sama kamu, bisa ngobrol tiap hari, bercanda bareng, dan punya banyak momen berdua. Kamu itu orang yang spesial buat aku, bukan cuma karena apa yang kamu lakuin, tapi karena kamu adalah kamu. Aku nyaman banget sama kamu, dan aku ga pengen kehilangan itu.<br><br>
+            
+            Walaupun Valentine itu cuma satu kali dalam setahun, aku pengen kamu tau kalau rasa sayang aku ke kamu ga cuma buat hari ini doang. Aku tetap sayang kamu setiap hari, setiap detik, setiap momen yang kita lewatin bareng. Aku harap kita bisa terus ada buat satu sama lain, saling dukung, saling jaga, dan bikin lebih banyak kenangan indah ke depannya.<br><br>
+            
+            I love you byy 💕 hehehe, semoga suka yaaa 😘💖</p>
+        <div class="product">
+          <img
+            src="https://i.pinimg.com/736x/b7/90/00/b790009f4df787249317e8b14c93786e.jpg"
+            alt="Phantom Count"
+            class="product-image"
+          />
+          <h3>Phantom Count</h3>
+          <button class="button" onclick="addToCart('Phantom Count')">
+            Choose This
+          </button>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://i.pinimg.com/736x/f9/12/71/f912714346abdaecfeca006f04b4335f.jpg"
+            alt="Phantom Countess"
+            class="product-image"
+          />
+          <h3>Phantom Countess</h3>
+          <button class="button" onclick="addToCart('Phantom Countess')">
+            Choose This
+          </button>
+        </div>
+
+        <div class="cart" id="cart">
+          <h2>Your Pick</h2>
+          <ul id="cart-items"></ul>
+          <button class="button" onclick="checkout()">Go To MLBB</button>
+        </div>
+
+        <div class="footer">
+          <p><a>I Love You💕</a></p>
+          <p><a>From Molen</a></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openEnvelope() {
+        document.querySelector(".envelope-container").classList.add("open");
+        setTimeout(() => {
+          document.querySelector(".envelope-container").style.display = "none";
+          document.getElementById("content").style.display = "block";
+        }, 600);
+      }
+
+      let cart = new Set();
+
+      function addToCart(product) {
+        cart.add(product);
+        updateCart();
+      }
+
+      function updateCart() {
+        let cartElement = document.getElementById("cart");
+        let cartItems = document.getElementById("cart-items");
+
+        cartItems.innerHTML = "";
+        cart.forEach((item) => {
+          let li = document.createElement("li");
+          li.textContent = item;
+          cartItems.appendChild(li);
+        });
+        cartElement.style.display = "block";
+      }
+
+      function checkout() {
+        window.location.href =
+          "intent://mobilelegends.com#Intent;scheme=mobilelegends;package=com.mobile.legends;end;";
+      }
+      function flyHeart() {
+        const heart = document.querySelector(".heart");
+        heart.classList.add("flying");
+
+        // Optional: After the animation, you can hide the heart or reset it
+        setTimeout(() => {
+          heart.classList.remove("flying"); // Reset the animation class
+          heart.style.opacity = "1"; // Reset opacity if needed
+        }, 1000); // Match this duration with the animation duration
+      }
+    </script>
+  </body>
+</html>
