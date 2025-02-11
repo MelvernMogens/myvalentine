@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/400/889/non_2x/red-heart-set-clipart-design-illustration-free-png.png" type="image/png" />
 
     <title>Hanya Cinta dan Malam</title>
     <style>
-body {
-    font-family: 'Poppins', sans-serif; /* Use Poppins for body text */
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://media.istockphoto.com/id/1191251531/vector/seamless-pattern-with-red-hearts-romantic-creamy-peach-background-for-textile-wallpaper.jpg?s=612x612&w=0&k=20&c=RqOsWkdXpYGaLs6uJ8-7Z0MjfXlIY73--E_oTjW1ZcE='); /* Set the background image */
-    background-size: cover; /* Cover the entire viewport */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-position: center; /* Center the image */
-}
+      /* Your existing CSS styles */
+      body {
+          font-family: 'Poppins', sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          background-image: url('https://media.istockphoto.com/id/1191251531/vector/seamless-pattern-with-red-hearts-romantic-creamy-peach-background-for-textile-wallpaper.jpg?s=612x612&w=0&k=20&c=RqOsWkdXpYGaLs6uJ8-7Z0MjfXlIY73--E_oTjW1ZcE=');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+      }
       .envelope-container {
         display: flex; /* Use flexbox to center the envelope */
         justify-content: center; /* Center horizontally */
@@ -145,17 +140,18 @@ body {
     </style>
   </head>
   <body>
-    <div class="envelope-container" onclick="openEnvelope()">
-      <div class="envelope">
+    <audio id="background-music">
+      <source src="audio.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+  </audio>
+
+  <div class="envelope-container" onclick="openEnvelope()">
+    <div class="envelope">
         <div class="flap"></div>
-        <img
-          class="heart"
-          src="https://static.vecteezy.com/system/resources/previews/009/400/889/non_2x/red-heart-set-clipart-design-illustration-free-png.png"
-          alt="Heart"
-          onclick="flyHeart()"
-        />
-      </div>
+        <img class="heart" src="https://static.vecteezy.com/system/resources/previews/009/400/889/non_2x/red-heart-set-clipart-design-illustration-free-png.png" alt="Heart" />
     </div>
+</div>
+
 
     <div class="content" id="content">
       <div class="header">
@@ -209,14 +205,24 @@ body {
       </div>
     </div>
     <script>
-      function openEnvelope() {
-        document.querySelector(".envelope-container").classList.add("open");
-        setTimeout(() => {
-          document.querySelector(".envelope-container").style.display = "none";
-          document.getElementById("content").style.display = "block";
-        }, 600);
-      }
+        // Function to play the background music
+        function playMusic() {
+            const music = document.getElementById('background-music');
+            music.currentTime = 0; // Reset to start
+            music.play().catch(error => {
+                console.log("Playback prevented: ", error);
+            });
+        }
 
+        // Function to open the envelope
+        function openEnvelope() {
+            playMusic(); // Play the music when the envelope is clicked
+            document.querySelector(".envelope-container").classList.add("open");
+            setTimeout(() => {
+                document.querySelector(".envelope-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            }, 600);
+        }
       let cart = new Set();
 
       function addToCart(product) {
